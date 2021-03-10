@@ -1,9 +1,21 @@
 import React from 'react'
+import Diary from './Diary'
 
-const PageHome = () => {
+const PageHome = ({diarys}) => {
   return (
     <div>
-      Home
+      {
+        diarys.map((diary, index) => {
+          return (
+            <Diary
+              date={diary.date}
+              title={diary.title}
+              text={diary.text}
+              key={index}
+            />
+          )
+        })
+      }
     </div>
   )
 }

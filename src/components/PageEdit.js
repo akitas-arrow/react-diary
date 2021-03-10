@@ -1,35 +1,41 @@
 import React, { useState } from 'react'
 
-const PageEdit = () => {
-  const [diary, setDiary] = useState({
-    date: '',
-    title: '',
-    text: '',
-  })
+const PageEdit = ({addDiary}) => {
+  const [date, setDate] = useState('');
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
+
+  const handleChangeDate = (e) => {
+    setDate(e.target.value)
+  }
+  const handleChangeTitle = (e) => {
+    setTitle(e.target.value)
+  }
+  const handleChangeText = (e) => {
+    setText(e.target.value)
+  }
+
+
+  const handleSubmit = (event) => {
+    console.log('submit')
+    event.preventDefault()
+    addDiary(date, title, text)
+  }
   
   return (
     <>
-    <p>
-      日付：{diary.date}
-    </p>
-    <p>
-      タイトル：{diary.title}
-    </p>
-    <p>
-      本文：{diary.text}
-    </p>
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         日付：
-        <input type='date'/>
+        <input type='date' onChange={handleChangeDate}/>
       </label>
       <label>
         タイトル：
-        <input type='text'/>
+        <input type='text' onChange={handleChangeTitle}/>
       </label>
       <label>
         本文：
-        <textarea/>
+        <textarea onChange={handleChangeText}/>
       </label>
       <input type='submit' value='submit'/>
     </form>
