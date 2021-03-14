@@ -1,21 +1,10 @@
 import React from 'react'
-import Diary from './Diary'
 
-const PageHome = ({diarys}) => {
+const PageHome = ({onClick}) => {
   return (
     <div>
-      {
-        diarys.map((diary, index) => {
-          return (
-            <Diary
-              date={diary.date}
-              title={diary.title}
-              text={diary.text}
-              key={index}
-            />
-          )
-        })
-      }
+      Home
+      <button onClick={onClick}>追加</button>
     </div>
   )
 }
