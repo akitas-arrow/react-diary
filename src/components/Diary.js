@@ -1,10 +1,19 @@
 import React from 'react'
+import DiaryItem from './DiaryItem'
+import Date from './Date'
 
-const Diary = ({title,date,text}) => {
+const Diary = ({diary}) => {
   return (
     <div>
-      {title}
-    </div>
+      <Date />
+    {
+      diary.map(day => {
+        return (
+          <DiaryItem key={day.id} date={day.date} text={day.text}/>
+        )
+      })
+    }
+  </div>
   )
 }
 

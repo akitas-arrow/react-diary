@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Header = () => {
+const Date = () => {
   return (
     <div>
-      
+      4月27日
     </div>
   )
 }
 
-export default Header
+export default Date
