@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import Form from './components/Form';
-import Diary from './components/Diary'
+import PageForm from './components/PageForm';
+import PageDiary from './components/PageDiary'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import {db} from './firebase/Firebase'
 
 function App() {
   const [diary, setDiary] = useState([])
-  // const [date, setDate] = useState(new Date());
-  // console.log(date)
+  const [date , setDate] = useState('');
+
+  const createDate = (month, day) => {
+    const _month = month.toString(10).padStart(2,'0');
+    const _day = day.toString(10).padStart(2,'0');
+    setDate(`${_month}-${_day}`);
+  }
 
   useEffect (() => {
-    const getDiary = db.collection('diary').onSnapshot((querySnapshot) => {
+    const getDiary = db.collection('diary').orderBy("year", "desc").onSnapshot((querySnapshot) => {
       const _diary = [];
       querySnapshot.forEach((doc) => {
           _diary.push({
@@ -26,8 +31,11 @@ function App() {
   },[])
 
   const addDiary = async(createDate, text) => {
+    const year = createDate.slice(0,4);
+    const monthDate = createDate.slice(5);
     await db.collection("diary").add({
-      date: createDate,
+      year: year,
+      monthDate: monthDate,
       text: text
     })
   }
@@ -37,10 +45,13 @@ function App() {
       <BrowserRouter>
       <Switch>
         <Route exact path={'/'}>
-          <Diary diary={diary} />
+          <PageDiary
+            diary={diary} date={date}
+            createDate={createDate}
+          />
         </Route>
         <Route exact path={'/createDiary'}>
-          <Form addDiary={addDiary}/>
+          <PageForm addDiary={addDiary}/>
         </Route>
       </Switch>
     </BrowserRouter>

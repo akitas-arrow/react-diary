@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-const Form = ({addDiary}) => {
+const PageForm = ({addDiary}) => {
   const [text, setText] = useState('')
   const [createDate, setCreateDate] = useState('')
 
@@ -20,4 +20,4 @@ const Form = ({addDiary}) => {
   )
 }
 
-export default Form
+export default PageForm
