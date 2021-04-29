@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 const PageDiary = ({diary, date, createDate}) => {
   return (
-    <div>
+    <>
       <DateForm createDate={createDate}/>
       {
         diary.filter(day => day.monthDate === date).map(day => {
@@ -15,7 +15,7 @@ const PageDiary = ({diary, date, createDate}) => {
         })
       }
       <Link to={'/createDiary'}>新規作成</Link>
-  </div>
+  </>
   )
 }
 

@@ -15,7 +15,7 @@ function App() {
   }
 
   useEffect (() => {
-    const getDiary = db.collection('diary').orderBy("year", "desc").onSnapshot((querySnapshot) => {
+    db.collection('diary').orderBy("year", "desc").onSnapshot((querySnapshot) => {
       const _diary = [];
       querySnapshot.forEach((doc) => {
           _diary.push({
@@ -25,9 +25,12 @@ function App() {
       });
       setDiary(_diary);
     });
-    return () => {
-      getDiary();
-    };
+    const month = new Date().getMonth() + 1;
+    const day = new Date().getDate();
+    createDate(month, day);
+    // const _month = (new Date().getMonth() + 1).toString(10).padStart(2,'0');
+    // const _day = new Date().getDate().toString(10).padStart(2,'0');
+    // setDate(`${_month}-${_day}`);
   },[])
 
   const addDiary = async(createDate, text) => {

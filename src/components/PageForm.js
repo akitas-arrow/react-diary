@@ -12,11 +12,13 @@ const PageForm = ({addDiary}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="date" value={createDate} onChange={e => setCreateDate(e.target.value)}/>
-      <textarea value={text} onChange={e => setText(e.target.value)}/>
-      <button type="submit">登録</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input type="date" value={createDate} onChange={e => setCreateDate(e.target.value)}/>
+        <textarea value={text} onChange={e => setText(e.target.value)}/>
+        <button type="submit">登録</button>
+      </form>
+    </>
   )
 }
 
