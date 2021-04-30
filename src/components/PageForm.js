@@ -5,10 +5,14 @@ const PageForm = ({addDiary}) => {
   const [createDate, setCreateDate] = useState('')
 
   const handleSubmit = (e) => {
+    if (!text || !createDate) {
+      alert('入力欄がからです')
+    } else {
+      addDiary(createDate, text)
+      setCreateDate('')
+      setText('')
+    }
     e.preventDefault();
-    addDiary(createDate, text)
-    setCreateDate('')
-    setText('')
   }
 
   return (
